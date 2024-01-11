@@ -1,3 +1,5 @@
+<?php require_once __DIR__ . '/function.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,21 +12,12 @@
 
 <body>
     <div class="container text-center">
-        <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $email = $_POST["email"];
 
-            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                echo '<div class="alert alert-success" role="alert">Email valida! Puoi procedere con l\'iscrizione.</div>';
-            } else {
-                echo '<div class="alert alert-danger" role="alert">
-                Email errata, @ o . mancanti.
-              </div>';
-            }
-        }
+        <?php
+        emailAlert();
         ?>
 
-        <form method="post" action="">
+        <form method="get" action="">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp">
