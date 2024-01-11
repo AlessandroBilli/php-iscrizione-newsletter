@@ -9,16 +9,29 @@
 </head>
 
 <body>
-    <div class="  container text-center">
-        <form>
+    <div class="container text-center">
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $email = $_POST["email"];
+
+            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                echo '<div class="alert alert-success" role="alert">Email valida! Puoi procedere con l\'iscrizione.</div>';
+            } else {
+                echo '<div class="alert alert-danger" role="alert">
+                Email errata, @ o . mancanti.
+              </div>';
+            }
+        }
+        ?>
+
+        <form method="post" action="">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp">
                 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
 
             <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
